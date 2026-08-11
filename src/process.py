@@ -23,7 +23,7 @@ OUTPUT_DIR = Path(os.environ.get(
 ))
 MODEL_DIR = Path(os.environ.get(
     "MODEL_DIR",
-    "/opt/algorithm/model",
+    "/opt/ml/model",
 ))
 
 WORK_DIR = Path(os.environ.get("WORK_DIR", "/tmp/selma3d_nnunet_work"))
