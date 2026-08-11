@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+nnunetv2==2.7.0
+SimpleITK
+numpy
+scipy
+scikit-image
+nibabel
+tifffile
+imageio
+acvl-utils
+dynamic-network-architectures
+batchgenerators
