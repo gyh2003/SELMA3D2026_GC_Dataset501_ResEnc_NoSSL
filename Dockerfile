@@ -1,7 +1,5 @@
 FROM --platform=linux/amd64 pytorch/pytorch:2.7.1-cuda12.6-cudnn9-runtime
 
-LABEL org.grand-challenge.api-method="invoke"
-
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
 ENV OMP_NUM_THREADS=4
@@ -20,7 +18,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt /opt/algorithm/requirements.txt
 RUN pip install --no-cache-dir -r /opt/algorithm/requirements.txt
 
-COPY app.py /opt/algorithm/app.py
 COPY src /opt/algorithm/src
 
 RUN groupadd -r algorithm && \
@@ -29,6 +26,4 @@ RUN groupadd -r algorithm && \
 
 USER algorithm
 
-EXPOSE 8080
-
-ENTRYPOINT ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]
+ENTRYPOINT ["python", "/opt/algorithm/src/process.py"]
