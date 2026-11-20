@@ -1,6 +1,6 @@
 # SELMA3D 2026 No SSL Baseline
 
-Source code and recovered model weights for the **ResEnc-L nnU-Net baseline** used in the SELMA3D 2026 final evaluation without self-supervised learning.
+Original submission source for the **ResEnc-L nnU-Net baseline** used in the SELMA3D 2026 final evaluation without self-supervised learning, together with model files recovered from an archived baseline training backup.
 
 The challenge baseline uses **one fold-0 model trained from scratch**. The original submission source is preserved under the tag **`v0.1.3-dataset501-resenc-no-ssl`**.
 
@@ -28,7 +28,7 @@ The challenge baseline uses **one fold-0 model trained from scratch**. The origi
 | Patch size | `160 × 224 × 192` |
 | Batch size | 2 |
 | Normalization | Z-score normalization |
-| Inference | `nnUNetv2_predict`, fold 0, with its default sliding-window and mirroring settings |
+| Inference | `nnUNetv2_predict`, fold 0; the exact command is in `src/process.py` |
 | Ensemble and routing | None |
 | Additional postprocessing | None; the predicted mask is saved as binary `uint8` |
 
@@ -46,7 +46,7 @@ nnUNetResEncUNetLPlans.json
 
 Mount this directory at **`/opt/ml/model`** when running the container.
 
-The downloadable archive was prepared on **20 November 2026** from the archived original training backup. The checkpoint and configuration files were copied without modification and checked against the backup using SHA-256. This is a **repackaged recovery archive**; the original Grand Challenge upload has not been compared byte for byte.
+The downloadable archive was prepared on **20 November 2026** from the archived baseline training backup. The checkpoint and configuration files were copied without modification and checked against that backup using SHA-256. This is a **repackaged recovery archive**. The original Grand Challenge model archive was not downloaded, so equality between the recovered checkpoint and the checkpoint in that upload has not been directly verified.
 
 | File | SHA-256 |
 | --- | --- |
@@ -60,6 +60,8 @@ shasum -a 256 model_dataset501_fold0_recovered.tar.gz
 ```
 
 ## 4. Build and run
+
+**Validation status:** the commands below are usage instructions. A new Docker build and GPU inference run using this recovery package have not been performed.
 
 Use a Docker host with NVIDIA GPU support for inference. Build from the original submission tag:
 
@@ -130,7 +132,7 @@ The original container is identified by the Grand Challenge record above. This R
 | Contiguous | DSC | 0.6379 ± 0.1900 |
 | Contiguous | clDice | 0.7108 ± 0.1904 |
 
-These scores are the historical Grand Challenge final evaluation results for the image and model versions above.
+These scores are the historical Grand Challenge final evaluation results for the image and model versions above. They have not been recomputed using the recovered archive.
 
 ## 7. Repository contents
 
